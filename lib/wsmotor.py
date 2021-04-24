@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import logging
-import urllib
+import urllib.request
 import json
 import random
 
@@ -105,7 +105,7 @@ class WsMotor :
         
         self.logger.info('Exporting JSON Wekan URL for board "%s" to a class dic : %s', board, url_json)
         # Get data from JSON URL
-        file = urllib.urlopen(url_json)
+        file = urllib.request.urlopen(url_json)
         data_json = json.load(file)
         # Dic for the board
         self.data[ board ] = dict()

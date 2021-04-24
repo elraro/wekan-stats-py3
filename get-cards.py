@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # get-cards.py
 #
@@ -7,13 +7,13 @@
 # Author: Florent MONTHEL (fmonthel@flox-arts.net)
 #
 
-#! /usr/bin/python
+#! /usr/bin/python3
 
 import os
 import argparse
 import datetime
 import logging
-import ConfigParser
+import configparser
 from terminaltables import AsciiTable
 from lib.wsmotor import WsMotor
 
@@ -21,7 +21,7 @@ def main() :
 
     # Parameters
     file_config = os.path.join(os.path.dirname(__file__), 'conf/config.ini')
-    Config = ConfigParser.ConfigParser()
+    Config = configparser.ConfigParser()
     Config.read(file_config)
     # Logging setup
     logging.basicConfig(level=logging.INFO)
@@ -67,7 +67,7 @@ def main() :
 
 
     # Ok get cards info
-    myAsciiTableCard = [['Card title','List','Archived','Member(s)','Labek(s)','Created Date','NB of event(s)']]
+    myAsciiTableCard = [['Card title','List','Archived','Member(s)','Label(s)','Created Date','NB of event(s)']]
     events_total = 0
     for (k,v) in sorted(dic_wekan['cards_sort'].items(),reverse=False) :
         if args.card_type == 'live' and dic_wekan['cards'][ v ]['archived'] == True :
@@ -85,7 +85,7 @@ def main() :
             continue
         events_total = events_total + len(dic_wekan['cards'][ v ]['events']['all'])
         tmpdata = list()
-        tmpdata.append(str(dic_wekan['cards'][ v ]['title'][0:80].encode('utf8'))) # Card name
+        tmpdata.append(str(dic_wekan['cards'][ v ]['title'][0:80])) # Card name
         # List
         tmpdata.append(str(dic_wekan['lists'][ dic_wekan['cards'][ v ]['list'] ]['name']))
         # Archived or Live
@@ -128,7 +128,7 @@ def main() :
     myTable.justify_columns[1] = myTable.justify_columns[2] = myTable.justify_columns[3] = myTable.justify_columns[4] = 'right'
     myTable.justify_columns[5] = myTable.justify_columns[6] = 'right'
     # Output data
-    print myTable.table
+    print(myTable.table)
     
     
 if __name__ == "__main__" :

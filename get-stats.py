@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # get-stats.py
 #
@@ -7,13 +7,13 @@
 # Author: Florent MONTHEL (fmonthel@flox-arts.net)
 #
 
-#! /usr/bin/python
+#! /usr/bin/python3
 
 import os
 import argparse
 import datetime
 import logging
-import ConfigParser
+import configparser
 from terminaltables import AsciiTable
 from lib.wsmotor import WsMotor
 
@@ -21,7 +21,7 @@ def main() :
 
     # Parameters
     file_config = os.path.join(os.path.dirname(__file__), 'conf/config.ini')
-    Config = ConfigParser.ConfigParser()
+    Config = configparser.ConfigParser()
     Config.read(file_config)
     # Logging setup
     logging.basicConfig(level=logging.INFO)
@@ -95,7 +95,7 @@ def main() :
         myTable.inner_footing_row_border = True
         myTable.justify_columns[1] = myTable.justify_columns[2] = myTable.justify_columns[3] = myTable.justify_columns[4] = 'right'
         # Output data
-        print myTable.table
+        print(myTable.table)
     
     # Stats on labels
     if args.action == 'label-stats' :
@@ -126,7 +126,7 @@ def main() :
         myTable.inner_footing_row_border = True
         myTable.justify_columns[1] = myTable.justify_columns[2] = myTable.justify_columns[3] = 'right'
         # Output data
-        print myTable.table
+        print(myTable.table)
     
     # Stats on users
     if args.action == 'user-stats' :
@@ -164,7 +164,7 @@ def main() :
         myTable.inner_footing_row_border = True
         myTable.justify_columns[1] = myTable.justify_columns[2] = myTable.justify_columns[3] = myTable.justify_columns[4] = 'right'
         # Output data
-        print myTable.table
+        print(myTable.table)
     
     # Stats on events
     if args.action == 'event-stats' :
@@ -187,7 +187,7 @@ def main() :
         myTable.inner_footing_row_border = True
         myTable.justify_columns[1] = myTable.justify_columns[2] = 'right'
         # Output data
-        print myTable.table
+        print(myTable.table)
 
 if __name__ == "__main__" :
     main()
